@@ -94,6 +94,7 @@
                                 </ul>
                             </li>
                             <li><a href="#more-complete-patching">More complete patching</a></li>
+                            <li><a href="#security-preview-releases">Security preview releases</a></li>
                             <li><a href="#sandboxed-google-play">Sandboxed Google Play</a></li>
                             <li><a href="#android-auto">Android Auto</a></li>
                             <li><a href="#network-permission-toggle">Network permission toggle</a></li>
@@ -537,6 +538,34 @@
                     <p>Our overall approach is to focus on systemic privacy and security
                     improvements but fixing individual vulnerabilities is still very
                     important.</p>
+                </section>
+
+                <section id="security-preview-releases">
+                    <h3><a href="#security-preview-releases">Security preview releases</a></h3>
+
+                    <p>GrapheneOS provides a recommended security preview release channel that delivers
+                    userspace Android security patches many months prior to their scheduled inclusion into an
+                    Android Security Bulletin (ASB). This means that security preview builds of GrapheneOS
+                    provide dozens of patches to Critical / High severity vulnerabilities months ahead of
+                    any other Android distribution including the stock Pixel OS.</p>
+                    
+                    <p>Android security patches are released in monthly bulletins with exclusive
+                    early access for OEMs (up to 2-3 or more months) prior to their scheduled
+                    ASB. Despite this early access major OEMs like Samsung or Google only
+                    provide a small percentage in their monthly updates. This current approach
+                    is problematic as there is a long window of vulnerability for serious security
+                    issues that a resourced exploit developer can take advantage of. Security preview
+                    releases of GrapheneOS are the only Android-based OS providing all of the full
+                    security preview patches.</p>
+
+                    <p>The only downside to this is that these patches are distributed with an embargo
+                    that prevents distribution of the source code and information about the CVEs before
+                    their official disclosure date. However, once an Android Security Bulletin is
+                    disclosed, these patches are then open-source and distributed to the regular release
+                    channel.</p>
+
+                    <p>See our <a href="/usage#storage-access">usage guide section on security preview
+                    releases</a> for detailed information about how to opt-in or out.</p>
                 </section>
 
                 <section id="sandboxed-google-play">
