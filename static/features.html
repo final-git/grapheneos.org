@@ -94,6 +94,7 @@
                                 </ul>
                             </li>
                             <li><a href="#more-complete-patching">More complete patching</a></li>
+                            <li><a href="#security-preview-releases">Security preview releases</a></li>
                             <li><a href="#sandboxed-google-play">Sandboxed Google Play</a></li>
                             <li><a href="#android-auto">Android Auto</a></li>
                             <li><a href="#network-permission-toggle">Network permission toggle</a></li>
@@ -125,6 +126,15 @@
                                     <li><a href="#disabling-app-installation">Disabling app installation</a></li>
                                     <li><a href="#install-available-apps">Install available apps</a></li>
                                     <li><a href="#notification-forwarding">Notification forwarding</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#improved-private-spaces">Improved private spaces</a>
+                                <ul>
+                                    <li><a href="#private-space-clipboard-sharing-control">Clipboard sharing control for private spaces</a></li>
+                                    <li><a href="#private-spaces-for-secondary-users">Private spaces for secondary users</a></li>
+                                    <li><a href="#end-session-on-lock">End session on lock</a></li>
+                                    <li><a href="#private-space-install-available-apps">Install available apps for private spaces</li>
                                 </ul>
                             </li>
                             <li><a href="#grapheneos-app-repository">GrapheneOS app
@@ -361,6 +371,9 @@
                                     and inter-object overflows along with deterministic detection
                                     of all small/linear overflows and use-after-free until it has
                                     been reused once and gone through the quarantines twice</li>
+                                    <li>Enable memory structure randomisation (RANDSTRUCT) randomizing order
+                                    of memory structures and function pointer tables with a unique per-release
+                                    seed based on the latest commit hash.</li>
                                 </ul>
                             </li>
                             <li>On ARMv9, Branch Target Identification (BTI) and Pointer
@@ -535,6 +548,34 @@
                     <p>Our overall approach is to focus on systemic privacy and security
                     improvements but fixing individual vulnerabilities is still very
                     important.</p>
+                </section>
+
+                <section id="security-preview-releases">
+                    <h3><a href="#security-preview-releases">Security preview releases</a></h3>
+
+                    <p>GrapheneOS provides a recommended security preview release channel that delivers
+                    userspace Android security patches many months prior to their scheduled inclusion into an
+                    Android Security Bulletin (ASB). This means that security preview builds of GrapheneOS
+                    provide dozens of patches to Critical / High severity vulnerabilities months ahead of
+                    any other Android distribution including the stock Pixel OS.</p>
+                    
+                    <p>Android security patches are released in monthly bulletins with exclusive
+                    early access for OEMs (up to 2-3 or more months) prior to their scheduled
+                    ASB. Despite this early access major OEMs like Samsung or Google only
+                    provide a small percentage in their monthly updates. This current approach
+                    is problematic as there is a long window of vulnerability for serious security
+                    issues that a resourced exploit developer can take advantage of. Security preview
+                    releases of GrapheneOS are the only Android-based OS providing all of the full
+                    security preview patches.</p>
+
+                    <p>The only downside to this is that these patches are distributed with an embargo
+                    that prevents distribution of the source code and information about the CVEs before
+                    their official disclosure date. However, once an Android Security Bulletin is
+                    disclosed, these patches are then open-source and distributed to the regular release
+                    channel.</p>
+
+                    <p>See our <a href="/usage#storage-access">usage guide section on security preview
+                    releases</a> for detailed information about how to opt-in or out.</p>
                 </section>
 
                 <section id="sandboxed-google-play">
@@ -1065,7 +1106,80 @@
                         notification channel.</p>
                     </section>
                 </section>
+                
+                <section id="improved-private-spaces">
+                    <h3><a href="#improved-private-spaces">Improved private spaces</a></h3>
 
+                    <p>Android's private spaces are secondary profiles that are nested inside of 
+                    another user profile. Like a user profile they provide an isolated workspace 
+                    with their own instances of apps, app data and profile data but accessible in 
+                    the same working environment as the parent user. Private spaces are also designed
+                    to replace work profiles for most users.</p>
+                    
+                    <p>Private spaces provide more convenience than secondary user profiles with a 
+                    shared clipboard and working environment. Users can also share files between the 
+                    private space and parent profile through the OS share menu while still having all 
+                    of the benefits of isolation.</p>
+
+                    <p>GrapheneOS provides improvements to private space usability, privacy and 
+                    security with further major improvements planned to make it replace the need for 
+                    a work profile or a secondary user for most users.</p>
+
+                    <section id="private-space-clipboard-sharing-control">
+                        <h4><a href="#private-space-clipboard-sharing-control">Clipboard sharing control</a></h4>
+
+                        <p>GrapheneOS provides an option for the user to allow or disallow the private space 
+                        sharing the clipboard to and from the parent user and any other child profiles such 
+                        as work profiles.</p>
+
+                        <p>This feature has four modes:</p>
+
+                        <ul>
+                            <li>Follow defaults</li>
+                            <li>Follow import defaults</li>
+                            <li>Follow export defaults</li>
+                            <li>Disallowed</li>
+                        </ul>
+                    
+                        <p>The default is <b>Follow defaults</b>, which allows sharing of the clipboard 
+                        between the private space to the parent user and other child profiles.</p>
+
+                        <p>The <b>Follow import defaults</b> and <b>Follow export defaults</b> settings only 
+                        allow one-way sharing of clipboard content. The Follow import defaults setting only 
+                        allows importing clipboard data into the private space while Follow export defaults 
+                        only allow exporting the clipboard data from the private space to the parent profile 
+                        and other child profiles.</p>
+
+                        <p>The most private and secure <b>Disallowed</b> mode disables all sharing of the 
+                        clipboard between the private space and other profiles.</p>
+                    </section>
+                        
+                    <section id="private-spaces-for-secondary-users">
+                        <h4><a href="#private-spaces-for-secondary-users">Private spaces for secondary users</a></h4>
+
+                        <p>GrapheneOS allows creating private spaces for secondary user profiles instead of 
+                        only one private space in the Owner profile.</p>
+                    </section>
+
+                    <section id="end-session-on-lock">
+                        <h4><a href="#end-session-on-lock">End session on lock</a></h4>
+
+                        <p>GrapheneOS provides an option to disallow the delayed locking of storage when a 
+                        private space is stopped or locked. This means that locking a private space will work 
+                        like <a href="#end-session">ending a user profile's session</a> where data is put back
+                        to rest from purging the disk encryption keys.</p>
+                    </section>
+
+                    <section id="private-space-install-available-apps">
+                            <h4><a href="#private-space-install-available-apps">install available apps for private spaces</a></h4>
+
+                            <p>GrapheneOS enables the install available apps feature for private spaces to 
+                            allow the parent user to install it's packages in their Private Space. This 
+                            allows installing an app in a secondary user that's already installed in the Owner 
+                            user without needing to download it again.</p>
+                    </section>
+                </section>
+                
                 <section id="grapheneos-app-repository">
                     <h3><a href="#grapheneos-app-repository">GrapheneOS app repository</a></h3>
 
